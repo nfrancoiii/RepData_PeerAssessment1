@@ -1,19 +1,37 @@
 # Reproducible Research: Peer Assessment 1
 
-
+Begin by pointing to the directory where the CSV file is saved
+```{r}
+setwd("C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Coursera\\ReproducibleResearch\\repdata-data-activity")
+```
 ## Loading and preprocessing the data
+```{r}
+data <- read.csv("activity.csv")
 
+```
 
 
 ## What is mean total number of steps taken per day?
-
-
+```{r}
+sumData <- aggregate(data$steps, by=list(Date=data$date),FUN = sum, na.rm = TRUE)
+hist(sumData$x, break = nrow(sumData))
+meanSteps <- mean(sumData[[2]])
+medianSteps <- median(sumData[[2]])
+```
 
 ## What is the average daily activity pattern?
-
+```{r}
+intsData <- aggregate(data$steps, by=list(Interval=data$interval),FUN = mean,na.rm=TRUE)
+plot(intsData$Interval, intsData$x, type = "l")
+maxInterval <- intsData[which.max(intsData$x),1]
+```
 
 
 ## Imputing missing values
+```{r}
+totalNAs <- colSums(is.na(data))[1]
+
+```
 
 
 
