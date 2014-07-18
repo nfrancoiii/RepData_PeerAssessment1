@@ -1,13 +1,14 @@
 # Reproducible Research: Peer Assessment 1
-The goal of this document is to process fitness data related to steps taken. THe data is measured in five minute intervals.
+The goal of this document is to process fitness data related to steps taken. The data is measured in five minute intervals.
 
-Begin by pointing to the directory where the CSV file is saved
+Begin by pointing to the directory where the CSV file is saved.
 ```{r}
 setwd("C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Coursera\\ReproducibleResearch\\repdata-data-activity")
 ```
 ## Loading and preprocessing the data
 We load the data file and store the data frame as a variable 'data'
 ```{r}
+print(getwd())
 data <- read.csv("activity.csv")
 
 ```
@@ -22,6 +23,8 @@ sumData <- aggregate(data$steps, by=list(Date=data$date),FUN = sum, na.rm = TRUE
 hist(sumData$x, breaks = nrow(sumData))
 meanSteps <- mean(sumData[[2]])
 medianSteps <- median(sumData[[2]])
+meanSteps
+medianSteps
 ```
 
 ## What is the average daily activity pattern?
@@ -73,7 +76,7 @@ for (i in 1:nrow(completeData))
                 completeData[i,5] <- 'Weekends'
         }
 weekDayData <- aggregate(completeData$steps, by=list(Interval=completeData$interval,Weekdays=completeData$weekDays),FUN = mean,na.rm=TRUE)
-#plot(intsData$Interval, intsData$x, type = "l")
+xyplot(x ~ Interval | Weekdays, data = weekDayData, layout = c(1,2), type="l")
 
 ```
                 

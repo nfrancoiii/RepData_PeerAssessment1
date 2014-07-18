@@ -181,9 +181,9 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>Reproducible Research: Peer Assessment 1</h1>
 
-<p>The goal of this document is to process fitness data related to steps taken. THe data is measured in five minute intervals.</p>
+<p>The goal of this document is to process fitness data related to steps taken. The data is measured in five minute intervals.</p>
 
-<p>Begin by pointing to the directory where the CSV file is saved</p>
+<p>Begin by pointing to the directory where the CSV file is saved.</p>
 
 <pre><code class="r">setwd(&quot;C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Coursera\\ReproducibleResearch\\repdata-data-activity&quot;)
 </code></pre>
@@ -191,6 +191,12 @@ hljs.initHighlightingOnLoad();
 <h2>Loading and preprocessing the data</h2>
 
 <p>We load the data file and store the data frame as a variable &#39;data&#39;</p>
+
+<pre><code class="r">print(getwd())
+</code></pre>
+
+<pre><code>## [1] &quot;C:/Users/Owner/Google Drive/PROGRAMMING_SKILLS/R/Coursera/ReproducibleResearch/RepData_PeerAssessment1&quot;
+</code></pre>
 
 <pre><code class="r">data &lt;- read.csv(&quot;activity.csv&quot;)
 </code></pre>
@@ -229,6 +235,18 @@ Store the mean and median number of steps taken daily as variables &#39;meanStep
 </code></pre>
 
 <pre><code>## Error: object &#39;sumData&#39; not found
+</code></pre>
+
+<pre><code class="r">meanSteps
+</code></pre>
+
+<pre><code>## Error: object &#39;meanSteps&#39; not found
+</code></pre>
+
+<pre><code class="r">medianSteps
+</code></pre>
+
+<pre><code>## Error: object &#39;medianSteps&#39; not found
 </code></pre>
 
 <h2>What is the average daily activity pattern?</h2>
@@ -342,7 +360,10 @@ Loop through the rows to define &#39;Weekends&#39;</p>
 <pre><code>## Error: object of type &#39;closure&#39; is not subsettable
 </code></pre>
 
-<pre><code class="r">#plot(intsData$Interval, intsData$x, type = &quot;l&quot;)
+<pre><code class="r">xyplot(x ~ Interval | Weekdays, data = weekDayData, layout = c(1,2), type=&quot;l&quot;)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;xyplot&quot;
 </code></pre>
 
 </body>
