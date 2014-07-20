@@ -9,7 +9,7 @@ setwd("C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Coursera\\Reproduc
 We load the data file and store the data frame as a variable 'data'
 ```{r}
 print(getwd())
-data <- read.csv("activity.csv")
+data <- read.csv("C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Coursera\\ReproducibleResearch\\repdata-data-activity\\activity.csv")
 
 ```
 
@@ -35,6 +35,7 @@ Find the interval in which the maximum number of steps is taken on average daily
 intsData <- aggregate(data$steps, by=list(Interval=data$interval),FUN = mean,na.rm=TRUE)
 plot(intsData$Interval, intsData$x, type = "l")
 maxInterval <- intsData[which.max(intsData$x),1]
+maxInterval
 ```
 
 
@@ -60,6 +61,8 @@ sumCompleteData <- aggregate(completeData$steps, by=list(Date=completeData$date)
 hist(sumCompleteData$x, breaks = nrow(sumCompleteData))
 meanCompleteSteps <- mean(sumCompleteData[[2]])
 medianCompleteSteps <- median(sumCompleteData[[2]])
+meanCompleteSteps
+medianCompleteSteps
 ```
 
 
@@ -67,7 +70,7 @@ medianCompleteSteps <- median(sumCompleteData[[2]])
 ## Are there differences in activity patterns between weekdays and weekends?
 Append a column of weekdays to 'completeData'.
 Initialize a column for weekday/weekend binary.
-Loop through the rows to define 'Weekends'
+Loop through the rows to define 'Weekends'.
 ```{r}
 completeData$day <- weekdays(as.Date(completeData$date))
 completeData$weekDays <- "Weekdays"
@@ -76,7 +79,9 @@ for (i in 1:nrow(completeData))
                 completeData[i,5] <- 'Weekends'
         }
 weekDayData <- aggregate(completeData$steps, by=list(Interval=completeData$interval,Weekdays=completeData$weekDays),FUN = mean,na.rm=TRUE)
+library(lattice)
 xyplot(x ~ Interval | Weekdays, data = weekDayData, layout = c(1,2), type="l")
 
 ```
                 
+The resulting plot shows that there are clear differences in activity between weekends and weekdays. Weekday activity spikes in the morning and again in the afternoon with relative inactivity in between. Weekend also show a ramp up of activity in the morning, but with a more consistent level of activity throughout the day.
