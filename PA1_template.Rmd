@@ -18,7 +18,7 @@ data <- read.csv("C:\\Users\\Owner\\Google Drive\\PROGRAMMING_SKILLS\\R\\Courser
 Use 'data' to create a data set 'sumData' that sums the number of steps taken each day.
 Create a histogram of the steps taken daily.
 Store the mean and median number of steps taken daily as variables 'meanSteps' and 'medianSteps'.
-```{r}
+```{r, "Raw_Data_Histogram"}
 sumData <- aggregate(data$steps, by=list(Date=data$date),FUN = sum, na.rm = TRUE)
 hist(sumData$x, breaks = nrow(sumData))
 meanSteps <- mean(sumData[[2]])
@@ -31,7 +31,7 @@ medianSteps
 Use 'data' to create a data set 'intsData' that averages the number of steps taken in each five minute interval across all days.
 Plot the data as a time series.
 Find the interval in which the maximum number of steps is taken on average daily and store as variable 'maxInterval'.
-```{r}
+```{r,"Interval_Time_Series_Plot"}
 intsData <- aggregate(data$steps, by=list(Interval=data$interval),FUN = mean,na.rm=TRUE)
 plot(intsData$Interval, intsData$x, type = "l")
 maxInterval <- intsData[which.max(intsData$x),1]
@@ -45,7 +45,7 @@ Replace missing values with average value for that five minute interval.
 Loop through the rows of 'data' to populate missing values in 'completeData'.
 Create a histogram of the total number of steps taken each day.
 
-```{r}
+```{r, "Missing_Values_Replaced_Histogram"}
 totalNAs <- colSums(is.na(data))[1]
 completeData <- data
 for (i in 1:nrow(completeData)) {
@@ -71,7 +71,7 @@ medianCompleteSteps
 Append a column of weekdays to 'completeData'.
 Initialize a column for weekday/weekend binary.
 Loop through the rows to define 'Weekends'.
-```{r}
+```{r, "Weekends_Weekdays"}
 completeData$day <- weekdays(as.Date(completeData$date))
 completeData$weekDays <- "Weekdays"
 for (i in 1:nrow(completeData))

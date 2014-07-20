@@ -32,7 +32,7 @@ sumData <- aggregate(data$steps, by=list(Date=data$date),FUN = sum, na.rm = TRUE
 hist(sumData$x, breaks = nrow(sumData))
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk Raw_Data_Histogram](figure/Raw_Data_Histogram.png) 
 
 ```r
 meanSteps <- mean(sumData[[2]])
@@ -62,7 +62,7 @@ intsData <- aggregate(data$steps, by=list(Interval=data$interval),FUN = mean,na.
 plot(intsData$Interval, intsData$x, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk Interval_Time_Series_Plot](figure/Interval_Time_Series_Plot.png) 
 
 ```r
 maxInterval <- intsData[which.max(intsData$x),1]
@@ -97,7 +97,7 @@ sumCompleteData <- aggregate(completeData$steps, by=list(Date=completeData$date)
 hist(sumCompleteData$x, breaks = nrow(sumCompleteData))
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+![plot of chunk Missing_Values_Replaced_Histogram](figure/Missing_Values_Replaced_Histogram.png) 
 
 ```r
 meanCompleteSteps <- mean(sumCompleteData[[2]])
@@ -143,6 +143,6 @@ library(lattice)
 xyplot(x ~ Interval | Weekdays, data = weekDayData, layout = c(1,2), type="l")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+![plot of chunk Weekends_Weekdays](figure/Weekends_Weekdays.png) 
                 
 The resulting plot shows that there are clear differences in activity between weekends and weekdays. Weekday activity spikes in the morning and again in the afternoon with relative inactivity in between. Weekend also show a ramp up of activity in the morning, but with a more consistent level of activity throughout the day.
